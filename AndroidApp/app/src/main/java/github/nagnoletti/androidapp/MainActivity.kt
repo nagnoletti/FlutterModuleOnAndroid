@@ -3,7 +3,7 @@ package github.nagnoletti.androidapp
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import github.nagnoletti.flutter_module_exported.library.FlutterModuleActivity
+import github.nagnoletti.flutter_module_exported.library.FlutterModuleManager
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         val btnOpenFlutterModule = findViewById<Button>(R.id.btnOpenFlutterModule)
         btnOpenFlutterModule.setOnClickListener {
-            startActivity(FlutterModuleActivity.getIntent(this))
+            FlutterModuleManager.openFlutterModuleActivity(this)
         }
     }
 }

@@ -6,11 +6,11 @@ import github.nagnoletti.flutter_module_exported.library.FlutterModuleManager.ge
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 
-open class FlutterModuleActivity : FlutterActivity() {
+internal open class FlutterModuleActivity : FlutterActivity() {
 
     companion object {
         fun getIntent(context: Context) = Intent(context, FlutterModuleActivity::class.java)
     }
 
-    override fun getFlutterEngine(): FlutterEngine? = getEngine()
+    override fun getFlutterEngine(): FlutterEngine = getEngine()
 }
