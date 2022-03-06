@@ -1,2 +1,2 @@
 # flutter_module_exported
-Flutter module imported into mobile libraries to use it as a normal dependency
+Flutter module exported into mobile libraries to make possible usage of a single local dependency.
