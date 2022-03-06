@@ -1,10 +1,9 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
-    }
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
 }
+
 rootProject.name = "AndroidApp"
 include ':app'
+include ':flutter_module_exported_library'
