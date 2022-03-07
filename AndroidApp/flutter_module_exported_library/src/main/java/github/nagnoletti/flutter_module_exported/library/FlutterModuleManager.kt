@@ -6,8 +6,14 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
 import io.flutter.embedding.engine.dart.DartExecutor
 
+/**
+ * Entrypoint to interact with Flutter module
+ * Prepare the Flutter application using [FlutterModuleManager.prepare] in your Application's onCreate.
+ * Then launch the default activity using [FlutterModuleManager.openFlutterModuleActivity].
+ */
 object FlutterModuleManager {
     private lateinit var flutterEngineName: String
+    private val isEngineInitialized get() = ::flutterEngineName.isInitialized
 
     private val flutterEngineNotPreparedException
         get() = IllegalStateException(
@@ -20,8 +26,11 @@ object FlutterModuleManager {
                     "Make sure you used 'FlutterModuleManager.prepare(application)' only once."
         )
 
+    /**
+     * Open [DefaultFlutterModuleActivity].
+     */
     fun openFlutterModuleActivity(context: Context) {
-        if (::flutterEngineName.isInitialized) {
+        if (isEngineInitialized) {
             context.startActivity(DefaultFlutterModuleActivity.getIntent(context))
         } else throw flutterEngineNotPreparedException
     }
@@ -31,8 +40,12 @@ object FlutterModuleManager {
         return engine ?: throw flutterEngineNotPreparedException
     }
 
+    /**
+     * Prepare Flutter application creating and warming-up the FlutterEngine.
+     * The engine instance is put into FlutterEngineCache to be used by Flutter activities.
+     */
     fun prepare(application: Application) {
-        if (::flutterEngineName.isInitialized) {
+        if (isEngineInitialized) {
             throw flutterEngineAlreadyPreparedException
         } else {
             flutterEngineName = application.packageName + "/FlutterEngine"
