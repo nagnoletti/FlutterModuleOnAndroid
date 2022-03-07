@@ -22,7 +22,7 @@ object FlutterModuleManager {
 
     fun openFlutterModuleActivity(context: Context) {
         if (::flutterEngineName.isInitialized) {
-            context.startActivity(FlutterModuleActivity.getIntent(context))
+            context.startActivity(DefaultFlutterModuleActivity.getIntent(context))
         } else throw flutterEngineNotPreparedException
     }
 

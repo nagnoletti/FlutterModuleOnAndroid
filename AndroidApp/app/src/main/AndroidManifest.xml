@@ -18,9 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="github.nagnoletti.flutter_module_exported.library.FlutterModuleActivity"
-            android:exported="false" />
     </application>
 
 </manifest>
