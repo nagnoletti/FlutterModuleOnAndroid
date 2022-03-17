@@ -1,9 +1,30 @@
 import org.gradle.api.initialization.resolve.RepositoriesMode
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
 }
 
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        google()
+        mavenCentral()
+
+        String storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?: "https://storage.googleapis.com"
+        repositories {
+            maven {
+                url "$rootDir/flutter_module_api/repo"
+            }
+            maven {
+                url "$storageUrl/download.flutter.io"
+            }
+        }
+    }
+}
 rootProject.name = "AndroidApp"
 include ':app'
-include ':flutter_module_exported_library'
+include ':flutter_module_api'

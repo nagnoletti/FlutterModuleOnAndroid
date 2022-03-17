@@ -1,23 +1,26 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "github.nagnoletti.androidapp"
+        applicationId "com.example.app"
         minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
+        profile {
+            initWith debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -32,29 +35,19 @@ android {
     }
 }
 
-repositories {
-    google()
-    mavenCentral()
-    maven {
-        // Flutter: use local maven repository for module AAR
-        url "${rootDir.parent}/flutter_module/build/host/outputs/repo"
-        // This is relative to the location of the build.gradle file
-        // if using a relative path.
-    }
-    maven {
-        // Flutter: Flutter libs dependencies
-        url 'https://storage.googleapis.com/download.flutter.io'
-    }
-}
-
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation project(':flutter_module_exported_library')
+    def flutter_module_version = '1.0'
+    debugImplementation "com.example.flutter_module:flutter_debug:$flutter_module_version"
+    profileImplementation "com.example.flutter_module:flutter_profile:$flutter_module_version"
+    releaseImplementation "com.example.flutter_module:flutter_release:$flutter_module_version"
+
+    implementation project(':flutter_module_api')
 }

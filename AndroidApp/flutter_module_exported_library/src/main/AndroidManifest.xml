@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="github.nagnoletti.flutter_module_exported.library">
-
-    <application>
-        <activity android:name=".DefaultFlutterModuleActivity" android:exported="false"/>
-    </application>
-</manifest>
