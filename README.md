@@ -1,2 +1,2 @@
 # FlutterModuleOnAndroid
-(Example) Run Flutter 2.x on native Android apps
+(Example) Run Flutter 2.x on native Android apps + bridging native APIs
